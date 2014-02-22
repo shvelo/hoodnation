@@ -12,19 +12,23 @@ game.PlayerEntity = me.ObjectEntity.extend({
  
         me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
 
-        this.renderable.addAnimation ("h", [2,3]);
-        this.renderable.addAnimation("v", [0,1]);
+        this.renderable.addAnimation ("h", [2,3], 500);
+        this.renderable.addAnimation("v", [0,1], 500);
         this.renderable.setCurrentAnimation("h");
     },
  
     update: function() {
  
         if (me.input.isKeyPressed('left')) {
+            if(! this.renderable.isCurrentAnimation("h"))
             this.renderable.setCurrentAnimation("h");
+
             this.flipX(true);
             this.vel.x -= this.accel.x * me.timer.tick;
         } else if (me.input.isKeyPressed('right')) {
+            if(! this.renderable.isCurrentAnimation("h"))
             this.renderable.setCurrentAnimation("h");
+
             this.flipX(false);
             this.vel.x += this.accel.x * me.timer.tick;
         } else {
@@ -32,11 +36,15 @@ game.PlayerEntity = me.ObjectEntity.extend({
         }
 
         if (me.input.isKeyPressed('up')) {
+            if(! this.renderable.isCurrentAnimation("v"))
             this.renderable.setCurrentAnimation("v");
+
             this.flipY(false);
             this.vel.y -= this.accel.y * me.timer.tick;
         } else if (me.input.isKeyPressed('down')) {
+            if(! this.renderable.isCurrentAnimation("v"))
             this.renderable.setCurrentAnimation("v");
+
             this.flipY(true);
             this.vel.y += this.accel.y * me.timer.tick;
         } else {
@@ -44,13 +52,15 @@ game.PlayerEntity = me.ObjectEntity.extend({
         }
 
         this.updateMovement();
- 
-        if (this.vel.x!=0 || this.vel.y!=0) {
-            this.parent();
-            return true;
-        }
 
-        return false;
+        if(this.vel.x == 0 && this.vel.y == 0) {
+            this.renderable.animationpause = true;
+        } else {
+            this.renderable.animationpause = false;
+        }
+ 
+        this.parent();
+        return true;
     }
  
 });
