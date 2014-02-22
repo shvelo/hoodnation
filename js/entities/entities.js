@@ -15,6 +15,8 @@ game.PlayerEntity = me.ObjectEntity.extend({
         this.renderable.addAnimation ("h", [2,3], 500);
         this.renderable.addAnimation("v", [0,1], 500);
 
+        this.updateColRect(4, 40, -4, 40);
+
         this.setHorizontal();
     },
 
@@ -22,14 +24,14 @@ game.PlayerEntity = me.ObjectEntity.extend({
         if(this.renderable.isCurrentAnimation("h")) return false;
 
         this.renderable.setCurrentAnimation("h");
-        this.updateColRect(12, 20, -4, 40);
+        //this.updateColRect(12, 20, -4, 40);
     },
 
     setVertical: function() {
         if(this.renderable.isCurrentAnimation("v")) return false;
 
         this.renderable.setCurrentAnimation("v");
-        this.updateColRect(3, 42, 10, 20);
+        //this.updateColRect(3, 42, 10, 20);
     },
  
     update: function() {
