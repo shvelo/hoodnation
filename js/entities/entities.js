@@ -14,20 +14,33 @@ game.PlayerEntity = me.ObjectEntity.extend({
 
         this.renderable.addAnimation ("h", [2,3], 500);
         this.renderable.addAnimation("v", [0,1], 500);
+
+        this.setHorizontal();
+    },
+
+    setHorizontal: function() {
+        if(this.renderable.isCurrentAnimation("h")) return false;
+
         this.renderable.setCurrentAnimation("h");
+        this.updateColRect(12, 20, -4, 40);
+    },
+
+    setVertical: function() {
+        if(this.renderable.isCurrentAnimation("v")) return false;
+
+        this.renderable.setCurrentAnimation("v");
+        this.updateColRect(3, 42, 10, 20);
     },
  
     update: function() {
  
         if (me.input.isKeyPressed('left')) {
-            if(! this.renderable.isCurrentAnimation("h"))
-            this.renderable.setCurrentAnimation("h");
+            this.setHorizontal();
 
             this.flipX(true);
             this.vel.x -= this.accel.x * me.timer.tick;
         } else if (me.input.isKeyPressed('right')) {
-            if(! this.renderable.isCurrentAnimation("h"))
-            this.renderable.setCurrentAnimation("h");
+            this.setHorizontal();
 
             this.flipX(false);
             this.vel.x += this.accel.x * me.timer.tick;
@@ -36,14 +49,12 @@ game.PlayerEntity = me.ObjectEntity.extend({
         }
 
         if (me.input.isKeyPressed('up')) {
-            if(! this.renderable.isCurrentAnimation("v"))
-            this.renderable.setCurrentAnimation("v");
+            this.setVertical();
 
             this.flipY(false);
             this.vel.y -= this.accel.y * me.timer.tick;
         } else if (me.input.isKeyPressed('down')) {
-            if(! this.renderable.isCurrentAnimation("v"))
-            this.renderable.setCurrentAnimation("v");
+            this.setVertical();
 
             this.flipY(true);
             this.vel.y += this.accel.y * me.timer.tick;
