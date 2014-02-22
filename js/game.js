@@ -23,6 +23,7 @@ var game = {
             window.onReady(function () {
                 me.plugin.register.defer(debugPanel, "debug");
             });
+            me.debug.renderHitBox = true;
         }
  
         // Initialize the audio.
