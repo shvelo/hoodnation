@@ -12,12 +12,7 @@ game.PlayerEntity = me.ObjectEntity.extend({
  
         me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
 
-        this.renderable.addAnimation ("h", [2,3], 500);
-        this.renderable.addAnimation("v", [0,1], 500);
-
         this.updateColRect(4, 40, -4, 40);
-
-        this.renderable.setCurrentAnimation("h");
 
         me.input.registerPointerEvent('mousemove', me.game.viewport, function(e) {
             this.renderable.angle = this.angleToPoint(new me.Vector2d(e.gameX, e.gameY));
