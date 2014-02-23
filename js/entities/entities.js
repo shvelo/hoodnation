@@ -6,7 +6,7 @@ game.PlayerEntity = me.ObjectEntity.extend({
     init: function(x, y, settings) {
         this.parent(x, y, settings);
  
-        this.setVelocity(4, 4);
+        this.setVelocity(2, 2);
 
         this.gravity = 0;
  
@@ -18,6 +18,11 @@ game.PlayerEntity = me.ObjectEntity.extend({
         this.updateColRect(4, 40, -4, 40);
 
         this.setHorizontal();
+
+        me.input.registerPointerEvent('mousemove', me.game.viewport, function(e) {
+            this.renderable.angle = this.angleToPoint(new me.Vector2d(e.gameX, e.gameY));
+            this.update();
+        }.bind(this));
     },
 
     setHorizontal: function() {
@@ -37,28 +42,16 @@ game.PlayerEntity = me.ObjectEntity.extend({
     update: function() {
  
         if (me.input.isKeyPressed('left')) {
-            this.setHorizontal();
-
-            this.flipX(true);
             this.vel.x -= this.accel.x * me.timer.tick;
         } else if (me.input.isKeyPressed('right')) {
-            this.setHorizontal();
-
-            this.flipX(false);
             this.vel.x += this.accel.x * me.timer.tick;
         } else {
             this.vel.x = 0;
         }
 
         if (me.input.isKeyPressed('up')) {
-            this.setVertical();
-
-            this.flipY(false);
             this.vel.y -= this.accel.y * me.timer.tick;
         } else if (me.input.isKeyPressed('down')) {
-            this.setVertical();
-
-            this.flipY(true);
             this.vel.y += this.accel.y * me.timer.tick;
         } else {
             this.vel.y = 0;
