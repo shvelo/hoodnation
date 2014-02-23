@@ -9,6 +9,7 @@ game.resources = [
     {name: "gripe_run_right", type:"image", src: "example_data/gripe_run_right.png"},
 
     {name: "player", type: "image", src: "art/character/player.png"},
+    {name: "enemy", type: "image", src: "art/character/enemy.png"},
 
     {name: "bullet", type: "image", src: "art/entity/bullet.png"},
      

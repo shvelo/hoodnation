@@ -48,6 +48,7 @@ var game = {
          
        // add our player entity in the entity pool
        me.entityPool.add("mainPlayer", game.PlayerEntity);
+       me.entityPool.add("enemy", game.EnemyEntity);
        me.entityPool.add("bullet", game.BulletEntity, true);
                  
        // enable the keyboard

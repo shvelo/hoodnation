@@ -48,5 +48,18 @@
     <property name="spritewidth" value="50"/>
    </properties>
   </object>
+  <object name="enemy" x="509" y="305" width="64" height="58">
+   <properties>
+    <property name="image" value="enemy"/>
+    <property name="spritewidth" value="50"/>
+   </properties>
+  </object>
+  <object name="enemy" x="840" y="546" width="64" height="58">
+   <properties>
+    <property name="image" value="enemy"/>
+    <property name="spritewidth" value="50"/>
+   </properties>
+  </object>
  </objectgroup>
+ <objectgroup name="Object Layer 2" width="100" height="100" visible="0"/>
 </map>
