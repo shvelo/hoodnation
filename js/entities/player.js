@@ -6,7 +6,7 @@ game.PlayerEntity = me.ObjectEntity.extend({
     init: function(x, y, settings) {
         this.parent(x, y, settings);
  
-        this.setVelocity(2, 2);
+        this.setVelocity(3, 3);
 
         this.gravity = 0;
  
@@ -17,26 +17,19 @@ game.PlayerEntity = me.ObjectEntity.extend({
 
         this.updateColRect(4, 40, -4, 40);
 
-        this.setHorizontal();
+        this.renderable.setCurrentAnimation("h");
 
         me.input.registerPointerEvent('mousemove', me.game.viewport, function(e) {
             this.renderable.angle = this.angleToPoint(new me.Vector2d(e.gameX, e.gameY));
-            this.update();
         }.bind(this));
-    },
 
-    setHorizontal: function() {
-        if(this.renderable.isCurrentAnimation("h")) return false;
-
-        this.renderable.setCurrentAnimation("h");
-        //this.updateColRect(12, 20, -4, 40);
-    },
-
-    setVertical: function() {
-        if(this.renderable.isCurrentAnimation("v")) return false;
-
-        this.renderable.setCurrentAnimation("v");
-        //this.updateColRect(3, 42, 10, 20);
+        me.input.registerPointerEvent('mousedown', me.game.viewport, function(e) {
+            var bullet = me.entityPool.newInstanceOf('bullet', this.pos.x, this.pos.y, {
+                targetAngle: this.angleToPoint(new me.Vector2d(e.gameX, e.gameY))
+            });
+            me.game.add(bullet, this.z); 
+            me.game.sort();
+        }.bind(this));
     },
  
     update: function() {
