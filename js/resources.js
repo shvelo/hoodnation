@@ -12,6 +12,9 @@ game.resources = [
     {name: "enemy", type: "image", src: "art/character/enemy.png"},
 
     {name: "bullet", type: "image", src: "art/entity/bullet.png"},
+
+    {name: "guy", type: "image", src: "art/hud/guy.png"},
+    {name: "gun", type: "image", src: "art/hud/gun.png"},
      
     /* 
      * Maps. 
